@@ -40,7 +40,7 @@ function sanitize_string(command) {
 }
 
 const repoName = sanitize_string(process.argv[2])
-const gitCloneCommand = `git clone --depth 1 --branch v${packageJson.version} https://github.com/equinor/create-dm-app ${repoName}`
+const gitCloneCommand = `git clone --depth 1 --branch v${packageJson.version} https://github.com/Timothy-Edward-Kendon/create-dm-app ${repoName}`
 const installDepsCommand = `cd ${repoName} && npm install`
 
 console.log(`Cloning version v${packageJson.version} into ${repoName}`)

@@ -1,1 +1,1 @@
-dm-cli==1.7.0
+development-framework-cli @ git+https://github.com/Timothy-Edward-Kendon/dm-cli.git@930395c09e05b036f679fd5d09164c8bd9cddc03
