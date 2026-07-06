@@ -2,13 +2,27 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { execSync } = require('child_process')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require('fs')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json')
 
 const runCommand = (command) => {
   try {
     execSync(`${command}`, { stdio: 'inherit' })
   } catch (e) {
-    console.error('Failed to execute ${command}', e)
+    console.error(`Failed to execute ${command}`, e)
+    return false
+  }
+  return true
+}
+
+const removePath = (targetPath) => {
+  try {
+    fs.rmSync(targetPath, { recursive: true, force: true })
+  } catch (e) {
+    console.error(`Failed to remove ${targetPath}`, e)
     return false
   }
   return true
@@ -38,10 +52,10 @@ const installedDeps = runCommand(installDepsCommand)
 if (!installedDeps) process.exit(-1)
 
 console.log('Cleaning up...')
-runCommand(`rm -rf ${repoName}/bin`)
-runCommand(`rm -rf ${repoName}/.git`)
-runCommand(`rm -rf ${repoName}/.github`)
-runCommand(`rm -rf ${repoName}/CHANGELOG.md`)
+removePath(path.join(repoName, 'bin'))
+removePath(path.join(repoName, '.git'))
+removePath(path.join(repoName, '.github'))
+removePath(path.join(repoName, 'CHANGELOG.md'))
 
 console.log(
   'Congratulations! You are ready. The following commands will start the application.'
