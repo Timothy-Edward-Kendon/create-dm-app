@@ -1,5 +1,5 @@
 {
-  "name": "@timothy-edward-kendon/create-dm-app",
+  "name": "@timothy.edward.kendon/create-dm-app",
   "version": "0.1.8",
   "bin": "./bin/cli.js",
   "license": "MIT",
